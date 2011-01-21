@@ -23,23 +23,25 @@ button.GENTICS_img_insert {
 }
 
 button.GENTICS_img_padding_increase {
-	background-image: url(images/padding-increase.gif) !important;
-	}
-	
+    background-image: url(images/padding-increase.gif) !important;
+}
+
 button.GENTICS_img_padding_decrease {
-	background-image: url(images/padding-decrease.gif) !important;
-	}
+    background-image: url(images/padding-decrease.gif) !important;
+}
+
 button.GENTICS_img_size_increase {
-	background-image: url(images/size-increase.gif) !important;
-	}
+    background-image: url(images/size-increase.gif) !important;
+}
+
 button.GENTICS_img_size_decrease {
-	background-image: url(images/size-decrease.gif) !important;
-	}
+    background-image: url(images/size-decrease.gif) !important;
+}
 
 .GENTICS_default_file_icon {
-	background-image: url(images/page.png) !important;
-	width: 16px;
-	height:16px;
-	margin: 0;
-	padding:0;
-	}
+    background-image: url(images/page.png) !important;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    width: 16px;
+}
