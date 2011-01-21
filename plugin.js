@@ -371,10 +371,6 @@ GENTICS.Aloha.Image.findImgMarkup = function ( range ) {
         var range = GENTICS.Aloha.Selection.getRangeObject();   
     }
 	try {
-		if (range.startContainer)
-			if (range.startContainer.childNodes)
-				if (range.startOffset)
-					if (range.startContainer.childNodes[range.startOffset])
 	    if (range.startContainer.childNodes[range.startOffset].nodeName.toLowerCase() == 'img') {
 			// console.log(range);
 			result = range.startContainer.childNodes[range.startOffset];
