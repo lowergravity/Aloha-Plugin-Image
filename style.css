@@ -1,47 +1,63 @@
 button.GENTICS_img_align_left {
-    background-image: url(images/image-align-left.png) !important;
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQAKIAAGBgYICAgKGhodTU1O7u7sbGxvj4+P///yH5BAAAAAAALAAAAAAQABAAAANaeLrcWyKWRSp5IQMxjxiDMSiREABBRxiVQQYmsClFIY4HdMJq6y6njiL0+Zl2MIVhyXI0iiAng7mk1QafAQFrqPVWS5/lFyoMajeQ6Mdigllva/dcI2RF0nwCADs=) !important;
 }
 
 button.GENTICS_img_align_right {
-    background-image: url(images/image-align-right.png) !important;
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQAKIAAGBgYICAgKGhodTU1O7u7sbGxvj4+P///yH5BAAAAAAALAAAAAAQABAAAANdeLrcSpCwImpZYgwzVAkgIFwHYUCGUgkBEJBFwXUHywLig6YH1QYjxSbDU7RICoPypAqBBKqNxtFYKqmT2CAzIGwNMVJkuRsLwYPYTMPhnchk07UnK6RjBC4Hy08AADs=) !important;
 }
 
 button.GENTICS_img_align_none {
-    background-image: url(images/image-align-none.png) !important;
-}
-
-button.GENTICS_img_title {
-    background-image: url(images/image-title.png) !important;
-}
-
-button.GENTICS_img_border {
-    background-image: url(images/image-border.png) !important;
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQAKIAAGBgYO7u7oCAgNTU1KGhofj4+MbGxv///yH5BAAAAAAALAAAAAAQABAAAANMeLrcayQax4y4gEx6IhGAsFHfB2TcAYGClirgyH1s+944Z+wDMQyBXmG3CRgLyGPBGCgoBsPBrvD7UZ2HJVKbbCIVU4N0F/BBBzlGAgA7) !important;
 }
 
 button.GENTICS_img_insert {
-    background-image: url(images/image.gif) !important;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABmJLR0QA8ADzAPXLIiA4AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAQAAAAEABcxq3DAAABVElEQVR42pWSsU7DMBCG7y6OGoFAiAFlRQwgYOrEDDM8B+IBmFnZmFkZYGRhQ+w8AEgFJBaQAi00LSpNaYm58yV1FbH0t+Oc4v/znWOjtRamkeHnodW7S1IORj/D9KvPQbPV0enOW1OD5/vG8vrq8cGuAOzeiBfmo6ibZTod/uYwochQu10/OjkHEEDE7rhjljjhB5yGQ0IwCAFCSGBIxu0YfUlcCY85FHAUALFbGXFL8D2wHuC67SDjtVlX4U0BKCNua0iW73++KFDock7yIEIN2DqZBDnJWGb8TyLHouvkAM9UgLJ0D6AHtP8HXN/uOYIFWAq0gd3fOuul7wr40wFZFWUkfhNAjhzId8pGeTWDdQtb5waJxed4UbWkmRqSTKlbjCLSJu7F2cADfE9ek/rhzoU7HS8tQ92PjackKffAt0ruiUoPyEl3qWL3ytomB1Nf7z86VnAKXbtSbQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMS0wMS0yMVQxMjo1Mzo0OS0wNjowMEU0DpUAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTEtMDEtMjFUMTI6NTM6NDktMDY6MDA0abYpAAAAAElFTkSuQmCC) !important;
 }
 
 button.GENTICS_img_padding_increase {
-    background-image: url(images/padding-increase.gif) !important;
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQANUAADtSa5u38oaj1zFr5O3x/K291mKFydnd78vZ+Ku3yMHL5pqnucXT7294j+Hl8DNUhvf8/5qt0+fr91VfbKu3y67C4cfS35Cw287c79zj9J6xy0FWbvf4/ayv0p2qutnm8qa0ycXO4s7W5LfG4Yihzf///+Xj9eXn8e/x9fD3/87e92KFysfS5q2306W0zsbP47fJ6P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHADEALAAAAAAQABAAAAaDwIEwRiwahUiEcRlDJAcBJtHpJAoGBUpimwBpBitjq0QumxvGgtmcMk2MlDUEgpIcNsZEmcORSBwHIXhFHnsEJx8YGCODRIUlHAQOiQwsLgBGHnMoJxkYDC8WEZhFCxkHIgowFS0dFySkRAYDG7UbALgAAw9EA1RSMQG+ScBTSEPFSEEAOw==) !important;
 }
 
 button.GENTICS_img_padding_decrease {
-    background-image: url(images/padding-decrease.gif) !important;
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQANUAADFr5Jy48pqnuTtSa+3x/M7c77fG4cXT76u3yG94j+Hl8Iihzff8/6yv0sXO4ufr91VfbJqt06291qa0ydnd78vZ+Nzj9EFWbsbP45Cw2/f4/b3O5p6xy52quq7C4au3y9nm8s7W5P///+Xj9eXn8e/x9fD3/87e98nY+LfJ6K2308XW3sXW5qW0zv///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHAC4ALAAAAAAQABAAAAaEQEDFRSwaiQFAsgI4FoVCF7PpdAGi1qvkg+giJpwr1aUSmc/ohFGCRptGEOOnzWCUHpSLEXHWaB4PChQOekUdfQQkIAUFBoVEhyIaBAqLBwctA0YddSUkFgUHGBgRmkUCFhQhGykeKg0ZC6ZZABe2FwO5A2JEU1VZQ0xMv1BJAb9GKABBADs=) !important;
 }
 
 button.GENTICS_img_size_increase {
-    background-image: url(images/size-increase.gif) !important;
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQANUAADRLY9Dh8KGvw5OhszFq5PDx/cPJ3lJjgI2s7LTI74OXw6K63eDg8P/4/6O3019vj8vU+JSnw1ldZsXS4qepz+Do84Cl2cDQ75218q/A4sDP9/H5/pGlzv///6W1zrDI3f///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHACAALAAAAAAQABAAAAZ2QJBwSCwaj0WH0iFoOiORwUDo6VivWOtD6MheCWCGhOq1QsIAocC70RAShEkatL5uChUCghEwzAdXGAR4FQGGGX8dBGcaFYUBFxMeiWAXFXyQEwYcfxtgBJgXBgYfnEIDhpoZGQseFBwWCn8HALW2t7VIurtGQQA7) !important;
 }
 
 button.GENTICS_img_size_decrease {
-    background-image: url(images/size-decrease.gif) !important;
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQANUAADRLY9Dh8KGvw5OhszFq5PDx/cPJ3lJjgJSv6rTI74OXw9/g8P/4/6K63V9vj6O305Snw7/U91ldZsXS4qepz+Do84Cl2b/N7crU+K/A4vH5/pGlzpa18v///6W1zsDP97DI3cnT+P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHACIALAAAAAAQABAAAAZ3QJFwSCwaj8WH8iFoOiGQwUDo6VivWKtD+MhiOYSFhOrtEDCEzwIgFHg1BEJiMWGL3FdNoRInBAx2A1Z9exUBhxmBViFxFYYBFxMeihEEF2GHkQYbgXAIFQuZBgYgnEIDhxMGGRkNHhQbFgqBBwC2t7i2SLu8RkEAOw==) !important;
 }
 
-.GENTICS_default_file_icon {
-    background-image: url(images/page.png) !important;
-    height: 16px;
-    margin: 0;
-    padding: 0;
-    width: 16px;
+button.GENTICS_img_align_left_nodatauri {
+    background-image: url(images/image-align-left.gif) !important;
+}
+
+button.GENTICS_img_align_right_nodatauri {
+    background-image: url(images/image-align-right.gif) !important;
+}
+
+button.GENTICS_img_align_none_nodatauri {
+    background-image: url(images/image-align-none.gif) !important;
+}
+
+button.GENTICS_img_insert_nodatauri {
+    background-image: url(images/image.png) !important;
+}
+
+button.GENTICS_img_padding_increase_nodatauri {
+    background-image: url(images/padding-increase.gif) !important;
+}
+
+button.GENTICS_img_padding_decrease_nodatauri {
+    background-image: url(images/padding-decrease.gif) !important;
+}
+
+button.GENTICS_img_size_increase_nodatauri {
+    background-image: url(images/size-increase.gif) !important;
+}
+
+button.GENTICS_img_size_decrease_nodatauri {
+    background-image: url(images/size-decrease.gif) !important;
 }

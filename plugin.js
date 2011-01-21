@@ -90,8 +90,10 @@ GENTICS.Aloha.Image.objectTypeFilter = [];
 // GENTICS.Aloha.Image.PropsWindow =
 GENTICS.Aloha.Image.initImage = function() {
 	var that = this;
+    var cssSuffix = dataURISuffix();
+
 	this.insertImgButton = new GENTICS.Aloha.ui.Button({
-		'iconClass': 'GENTICS_button GENTICS_img_insert',
+		'iconClass': 'GENTICS_button GENTICS_img_insert' + cssSuffix,
 		'size' : 'small',
 		'onclick' : function () { that.insertImg(); },
 		'tooltip' : that.i18n('button.addimg.tooltip'),
@@ -109,7 +111,7 @@ GENTICS.Aloha.Image.initImage = function() {
 	GENTICS.Aloha.FloatingMenu.createScope(this.getUID('image'), 'global');
 	
 	var alignLeftButton = new GENTICS.Aloha.ui.Button({
-        'iconClass': 'GENTICS_button GENTICS_img_align_left',
+        'iconClass': 'GENTICS_button GENTICS_img_align_left' + cssSuffix,
         'size': 'small',
         'onclick' : function() {
             var img = that.findImgMarkup();
@@ -118,7 +120,7 @@ GENTICS.Aloha.Image.initImage = function() {
         'tooltip': that.i18n('button.img.align.left.tooltip')
     });
 	var alignRightButton = new GENTICS.Aloha.ui.Button({
-        'iconClass': 'GENTICS_button GENTICS_img_align_right',
+        'iconClass': 'GENTICS_button GENTICS_img_align_right' + cssSuffix,
         'size': 'small',
         'onclick' : function() {
             var img = that.findImgMarkup();
@@ -127,7 +129,7 @@ GENTICS.Aloha.Image.initImage = function() {
         'tooltip': that.i18n('button.img.align.right.tooltip')
     });
     var alignNoneButton = new GENTICS.Aloha.ui.Button({
-        'iconClass': 'GENTICS_button GENTICS_img_align_none',
+        'iconClass': 'GENTICS_button GENTICS_img_align_none' + cssSuffix,
         'size': 'small',
         'onclick' : function() {
 	    	var img = that.findImgMarkup();
@@ -186,7 +188,7 @@ GENTICS.Aloha.Image.initImage = function() {
     );
     
     var incPadding = new GENTICS.Aloha.ui.Button({
-    	iconClass: 'GENTICS_button GENTICS_img_padding_increase',
+    	iconClass: 'GENTICS_button GENTICS_img_padding_increase' + cssSuffix,
     	size: 'small',
     	onclick: function() {
     	var image = that.findImgMarkup();
@@ -203,7 +205,7 @@ GENTICS.Aloha.Image.initImage = function() {
     		2
     );
    var decPadding = new GENTICS.Aloha.ui.Button({
-    	iconClass: 'GENTICS_button GENTICS_img_padding_decrease',
+    	iconClass: 'GENTICS_button GENTICS_img_padding_decrease' + cssSuffix,
     	size: 'small',
     	onclick: function() {
     	var image = that.findImgMarkup();
@@ -220,7 +222,7 @@ GENTICS.Aloha.Image.initImage = function() {
    		2
    );
    var  incSize = new GENTICS.Aloha.ui.Button({
-	   iconClass: 'GENTICS_button GENTICS_img_size_increase',
+	   iconClass: 'GENTICS_button GENTICS_img_size_increase' + cssSuffix,
 	   size: 'small',
 	   onclick: function() {
 	   var image = that.findImgMarkup();
@@ -237,7 +239,7 @@ GENTICS.Aloha.Image.initImage = function() {
 	   		2
 	   );
    var decSize = new GENTICS.Aloha.ui.Button({
-	   iconClass: 'GENTICS_button GENTICS_img_size_decrease',
+	   iconClass: 'GENTICS_button GENTICS_img_size_decrease' + cssSuffix,
 	   size: 'small',
 	   onclick: function() {
 	   var image = that.findImgMarkup();
@@ -431,4 +433,17 @@ GENTICS.Aloha.Image.srcChange = function () {
 	// this.imgSrcField.getItem() (optinal a selected resource item)
 	// TODO additionally implement an srcChange Handler to let implementer
 	// customize
+};
+
+// Check for data uri support and return string for css
+
+dataURISuffix = function() {
+    var data = new Image();
+    data.onload = data.onerror = function() {
+        if (this.width != 1 || this.height != 1) {
+            return '_nodatauri'
+        }
+    }
+    data.src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+    return '';
 };
