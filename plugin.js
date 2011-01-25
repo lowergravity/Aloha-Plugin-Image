@@ -299,7 +299,7 @@ GENTICS.Aloha.Image.subscribeEvents = function () {
 			reader.config = that.getEditableConfig(data.editable);
 			reader.attachedData = data;
 			reader.onloadend = function(readEvent) {
-				img = jQuery('<img id="'+reader.attachedData.fileObj.id+'" style="" title="" src=""></img>');
+				img = jQuery('<img id="'+reader.attachedData.fileObj.id+'" style="" title="" src="">');
 				img.click( GENTICS.Aloha.Image.clickImage );
 				if (reader.attachedData.fileObj.src == undefined) {
 					reader.attachedData.fileObj.src =readEvent.target.result;
@@ -333,40 +333,81 @@ GENTICS.Aloha.Image.subscribeEvents = function () {
             GENTICS.Aloha.FloatingMenu.userActivatedTab = that.i18n('floatingmenu.tab.img');
         } else {
         	that.imgSrcField.setTargetObject(null);
+            GENTICS.Aloha.Image.removeOutline();
         }
     	// TODO this should not be necessary here!
     	GENTICS.Aloha.FloatingMenu.doLayout();
     });
-    // add to all editables the image click
-    for (var i = 0; i < GENTICS.Aloha.editables.length; i++) {
 
-	    // add a click (=select) event to all image.
-	    GENTICS.Aloha.editables[i].obj.find('img').each( function( i ) {
-	        // select the image when clicked
+    // when editable is created add image click and mouse events.
+    GENTICS.Aloha.EventRegistry.subscribe(GENTICS.Aloha, 'editableCreated', function(event, editable) {
+       editable.obj.find('img').each( function() {
+
+            // add mouse enter event
+            jQuery(this).mouseenter( function(e) {
+                GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'mouse over image.');
+                that.mouseOverImg = this;
+                that.updateMousePointer();
+            });
+
+            // add mouse leave event
+            jQuery(this).mouseleave( function(e) {
+                GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'mouse left image.');
+                that.mouseOverImg = null;
+                that.updateMousePointer();
+            });
+
+            // add click event
 	        jQuery(this).click( GENTICS.Aloha.Image.clickImage );
-	    });
+
+        });
+    });
+
+    // remove outline class when editable is no longer active
+    GENTICS.Aloha.EventRegistry.subscribe(GENTICS.Aloha, 'editableDeactivated', function(event, editable) {
+        GENTICS.Aloha.Image.removeOutline();
+    });
+};
+
+/**
+ * Update the mouse cursor
+ */
+GENTICS.Aloha.Image.updateMousePointer = function () {
+
+    // mouse actions
+    if ( this.mouseOverImg ) {
+        jQuery(this.mouseOverImg).addClass('GENTICS_img_pointer');
+    } else {
+        GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'unset pointer');
     }
 };
 
-GENTICS.Aloha.Image.clickImage = function ( e ) { 
-	// select the image
-	// HELP: can't find a way...
-	thisimg = jQuery(this);
-   var offset = 1;//GENTICS.Utils.Dom.getIndexInParent(this);
-   var imgRange = new GENTICS.Utils.RangeObject({
-	   startContainer: thisimg.parent(),
-	   endContainer: thisimg.parent(),
-	   startOffset: offset,
-	   endOffset: offset+1
-   });
-   imgRange.correctRange();
-   imgRange.update();
-   // console.log(imgRange);
-   imgRange.select();
-   
+/**
+ * Remove all image outlines
+ */
+GENTICS.Aloha.Image.removeOutline = function() {
+    for (var i = 0; i < GENTICS.Aloha.editables.length; i++) {
+        GENTICS.Aloha.editables[i].obj.find('img').each( function( i ) {
+            jQuery(this).removeClass('GENTICS_img_outline');
+        });
+    }
 };
 
-
+/**
+ * Select the image range and set the outline style
+ */
+GENTICS.Aloha.Image.clickImage = function ( e ) { 
+    thisimg = jQuery(this);
+    thisimg.addClass('GENTICS_img_outline');
+    var range = new GENTICS.Utils.RangeObject({
+        startContainer : thisimg.get(0),
+        endContainer: thisimg.get(0),
+        startOffset: 0,
+        endOffset: 0
+    });
+    range.correctRange();
+    range.select();
+};
 
 GENTICS.Aloha.Image.findImgMarkup = function ( range ) {
 	if ( typeof range == 'undefined' ) {
@@ -394,7 +435,7 @@ GENTICS.Aloha.Image.insertImg = function() {
     if ( range.isCollapsed() ) {
     	// TODO I would suggest to call the srcChange method. So all image src
 		// changes are on one single point.
-    	imagetag = '<img src="' + GENTICS_Aloha_base + 'plugins/com.gentics.aloha.plugins.Image/images/blank.jpeg" title="" style=""></img>';
+    	imagetag = '<img src="' + GENTICS_Aloha_base + 'plugins/com.gentics.aloha.plugins.Image/images/blank.jpeg" title="" style="">';
     	var newImg = jQuery(imagetag);
     	// add the click selection handler
     	newImg.click( GENTICS.Aloha.Image.clickImage );
