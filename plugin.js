@@ -341,24 +341,19 @@ GENTICS.Aloha.Image.subscribeEvents = function () {
 
     // when editable is created add image click and mouse events.
     GENTICS.Aloha.EventRegistry.subscribe(GENTICS.Aloha, 'editableCreated', function(event, editable) {
-       editable.obj.find('img').each( function() {
+        editable.obj.find('img').each( function() {
 
             // add mouse enter event
-            jQuery(this).mouseenter( function(e) {
-                GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'mouse over image.');
-                that.mouseOverImg = this;
-                that.updateMousePointer();
-            });
+            jQuery(this).mouseenter( GENTICS.Aloha.Image.MouseEnter );
 
             // add mouse leave event
-            jQuery(this).mouseleave( function(e) {
-                GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'mouse left image.');
-                that.mouseOverImg = null;
-                that.updateMousePointer();
-            });
+            jQuery(this).mouseleave( GENTICS.Aloha.Image.MouseLeave );
 
             // add click event
-	        jQuery(this).click( GENTICS.Aloha.Image.clickImage );
+            jQuery(this).click( GENTICS.Aloha.Image.clickImage );
+
+            // TODO add drag event - when dragging image around range gets messed up.
+            //jQuery(this).bind('dragend',function(e){GENTICS.Aloha.EventRegistry.trigger(new GENTICS.Aloha.Event('selectionChanged', GENTICS.Aloha));});
 
         });
     });
@@ -370,16 +365,19 @@ GENTICS.Aloha.Image.subscribeEvents = function () {
 };
 
 /**
- * Update the mouse cursor
+ * Mouse enter
  */
-GENTICS.Aloha.Image.updateMousePointer = function () {
+GENTICS.Aloha.Image.MouseEnter = function() {
+    GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'mouse entered image.');
+    jQuery(this).addClass('GENTICS_img_pointer');
+};
 
-    // mouse actions
-    if ( this.mouseOverImg ) {
-        jQuery(this.mouseOverImg).addClass('GENTICS_img_pointer');
-    } else {
-        GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'unset pointer');
-    }
+/**
+ * Mouse leave
+ */
+GENTICS.Aloha.Image.MouseLeave = function() {
+    GENTICS.Aloha.Log.debug(GENTICS.Aloha.Image, 'mouse left image.');
+    jQuery(this).removeClass('GENTICS_img_pointer');
 };
 
 /**
@@ -398,12 +396,13 @@ GENTICS.Aloha.Image.removeOutline = function() {
  */
 GENTICS.Aloha.Image.clickImage = function ( e ) { 
     thisimg = jQuery(this);
+    GENTICS.Aloha.Image.removeOutline();
     thisimg.addClass('GENTICS_img_outline');
     var range = new GENTICS.Utils.RangeObject({
-        startContainer : thisimg.get(0),
-        endContainer: thisimg.get(0),
-        startOffset: 0,
-        endOffset: 0
+        startContainer : thisimg.parent().get(0),
+        endContainer: thisimg.parent().get(0),
+        startOffset: GENTICS.Utils.Dom.getIndexInParent(thisimg.get(0)),
+        endOffset: GENTICS.Utils.Dom.getIndexInParent(thisimg.get(0))+1,
     });
     range.correctRange();
     range.select();
@@ -430,34 +429,48 @@ GENTICS.Aloha.Image.findImgMarkup = function ( range ) {
 };
 
 GENTICS.Aloha.Image.insertImg = function() {
-	var range = GENTICS.Aloha.Selection.getRangeObject();
-	
+    var range = GENTICS.Aloha.Selection.getRangeObject();
+
     if ( range.isCollapsed() ) {
-    	// TODO I would suggest to call the srcChange method. So all image src
-		// changes are on one single point.
-    	imagetag = '<img src="' + GENTICS_Aloha_base + 'plugins/com.gentics.aloha.plugins.Image/images/blank.jpeg" title="" style="">';
-    	var newImg = jQuery(imagetag);
-    	// add the click selection handler
-    	newImg.click( GENTICS.Aloha.Image.clickImage );
-    	GENTICS.Utils.Dom.insertIntoDOM(newImg, range, jQuery(GENTICS.Aloha.activeEditable.obj));
-    	// select the image when inserted
-// var offset = GENTICS.Utils.Dom.getIndexInParent(newImg.get(0));
-// var imgRange = new GENTICS.Utils.RangeObject({
-// startContainer: newImg.parent(),
-// endContainer: newImg.parent(),
-// startOffset: offset,
-// endOffset: offset+1
-// });
-// imgRange.select();
-    	
+        // TODO I would suggest to call the srcChange method. So all image src
+        // changes are on one single point.
+        imagetag = '<img src="' + GENTICS_Aloha_base + 'plugins/com.gentics.aloha.plugins.Image/images/blank.jpeg" title="" style="">';
+        var newImg = jQuery(imagetag);
+
+        // add click event
+        newImg.click( GENTICS.Aloha.Image.clickImage );
+
+        // add mouse enter event
+        newImg.mouseenter( GENTICS.Aloha.Image.MouseEnter );
+
+        // add mouse leave event
+        newImg.mouseleave( GENTICS.Aloha.Image.MouseLeave );
+
+        // add outline
+        newImg.addClass('GENTICS_img_outline');
+
+        // insert into dom
+        GENTICS.Utils.Dom.insertIntoDOM(newImg, range, jQuery(GENTICS.Aloha.activeEditable.obj));
+
+        // select the image when inserted
+        var offset = GENTICS.Utils.Dom.getIndexInParent(newImg.get(0));
+        var imgRange = new GENTICS.Utils.RangeObject({
+            startContainer: newImg.parent().get(0),
+            endContainer: newImg.parent().get(0),
+            startOffset: offset,
+            endOffset: offset+1
+        });
+        imgRange.correctRange();
+        imgRange.select();
+
     } else {
-    	// TODO NEVER alert!! i18n !! Instead log. We have a messaging stack on
-    	// the roadmap which will offer you the possibility to push messages.
-    	alert('img cannot markup a selection');
-    	// TODO the desired behavior could be that the selected content is
-		// replaced by an image.
-    	// TODO it should be editor's choice, with an Ext Dialog instead of
-		// alert.
+        // TODO NEVER alert!! i18n !! Instead log. We have a messaging stack on
+        // the roadmap which will offer you the possibility to push messages.
+        //alert('img cannot markup a selection');
+        // TODO the desired behavior could be that the selected content is
+        // replaced by an image.
+        // TODO it should be editor's choice, with an Ext Dialog instead of
+        // alert.
     }
 };
 
